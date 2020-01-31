@@ -5,6 +5,10 @@ import com.squareup.kotlinpoet.ClassName
 enum class FieldType : FieldTypeInterface {
 
 
+    ID {
+        override fun value(): ClassName = ClassName("", "String")
+    },
+
     STRING {
         override fun value(): ClassName = ClassName("", "String")
     },

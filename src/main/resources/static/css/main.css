@@ -131,8 +131,10 @@ input[type="file"] {
 }
 
 pre code {
-    background-color: #eee;
-    border: 1px solid #999;
+    background-color: #d7fff84f;
+    border: 1px solid #0095b7;
+    border-radius: 5px;
     display: block;
-    padding: 20px;
+    padding: 10px;
+    color: #00475d;
 }

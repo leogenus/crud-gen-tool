@@ -42,6 +42,11 @@ const initialJson = {
         "tableName": "k_greeting",
         "fields": [
             {
+                "fieldName": "superId",
+                "fieldType": "ID",
+                "columnName": "super_id"
+            },
+            {
                 "fieldName": "test",
                 "fieldType": "STRING",
                 "columnName": "test_column"
