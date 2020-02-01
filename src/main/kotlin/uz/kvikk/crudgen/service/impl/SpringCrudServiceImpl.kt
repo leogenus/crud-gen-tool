@@ -283,7 +283,7 @@ class SpringCrudServiceImpl : SpringCrudService {
                         .addFunction(FunSpec.builder("delete")
                                 .addModifiers(KModifier.OVERRIDE)
                                 .addParameter(idField.fieldName!!, String::class)
-                                .addStatement("jdbcTemplate.jdbcTemplate.update(%1S, %2L)", "delete from employee where ${idField.columnName!!.toUpperCase()} = ?", idField.fieldName!!)
+                                .addStatement("jdbcTemplate.jdbcTemplate.update(%1S, %2L)", "delete from $tableName where ${idField.columnName!!.toUpperCase()} = ?", idField.fieldName!!)
                                 .build())
                         .build())
                 .build()
