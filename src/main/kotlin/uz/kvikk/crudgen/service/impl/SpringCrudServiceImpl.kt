@@ -147,9 +147,8 @@ class SpringCrudServiceImpl : SpringCrudService {
 
     private fun createServiceCrud(service: String, pojoClassName: ClassName, stringBuilder: StringBuilder?, idFieldName: String): ClassName {
         val serviceName = service.capitalize()
-        val anyTypeName = TypeVariableName("*")
         val pageClassName = ClassName("org.springframework.data.domain", "Page")
-                .parameterizedBy(pojoClassName ?: anyTypeName)
+                .parameterizedBy(pojoClassName )
 
         val serviceFile = FileSpec.builder("", serviceName)
                 .addType(TypeSpec.interfaceBuilder(serviceName)
@@ -187,9 +186,8 @@ class SpringCrudServiceImpl : SpringCrudService {
 
     fun createServiceImplCrud(service: String, interfaceName: ClassName, pojoClassName: ClassName, tableName: String, mapperClassName: ClassName, stringBuilder: StringBuilder?, list: List<ClassDomain>, idField: ClassDomain): ClassName {
         val serviceName = service.capitalize()
-        val anyTypeName = TypeVariableName("*")
         val pageClassName = ClassName("org.springframework.data.domain", "Page")
-                .parameterizedBy(pojoClassName ?: anyTypeName)
+                .parameterizedBy(pojoClassName )
 
 
         val insertColumnBuilder = StringBuilder()
@@ -353,20 +351,6 @@ class SpringCrudServiceImpl : SpringCrudService {
                                 .addParameter(idFieldName, String::class)
                                 .addStatement("return ResponseEntity.ok($argName.delete(%1L))", idFieldName)
                                 .build())
-                        /* .addFunction(FunSpec.builder("")
-                                 .returns(responseEntityClassName.parameterizedBy(anyTypeName))
-                                 .build())
-                         .addFunction(FunSpec.builder("create")
-                                 .returns(responseEntityClassName.parameterizedBy(anyTypeName))
-                                 .build())
-                         .addFunction(FunSpec.builder("update")
-                                 .returns(responseEntityClassName.parameterizedBy(anyTypeName))
-                                 .build())
-                         .addFunction(FunSpec.builder("delete")
-                                 .returns(responseEntityClassName.parameterizedBy(anyTypeName))
-                                 .addStatement("documentService.delete(id, principal)")
-                                 .addStatement("return ResponseEntity.ok().build()")
-                                 .build())*/
                         .addProperty(PropertySpec.builder(argName, serviceClassName, KModifier.PRIVATE)
                                 .initializer(argName)
                                 .build())
